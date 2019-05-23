@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     # check root privilege
     if os.getuid() != 0:
-        print("\n\tError: script must be executed as root\n")
+        print("\n\tError: program must be executed as root\n")
         sys.exit(1)
 
     # checks python version
