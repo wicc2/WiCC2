@@ -1,26 +1,27 @@
-WiCC
+WiCC 2
 ====
-![](https://img.shields.io/github/license/pabloibiza/WiCC.svg)
-![](https://img.shields.io/github/release/pabloibiza/WiCC.svg)
-![](https://img.shields.io/github/release-date/pabloibiza/WiCC.svg)
-![](https://img.shields.io/github/commits-since/pabloibiza/WiCC/v0.2.svg)
-![](https://img.shields.io/github/contributors/pabloibiza/WiCC.svg)
-![](https://img.shields.io/github/repo-size/pabloibiza/WiCC.svg)
+![](https://img.shields.io/github/license/MiguelYanes/WiCC2.svg)
+![](https://img.shields.io/github/release/MiguelYanes/WiCC2.svg)
+![](https://img.shields.io/github/release-date/MiguelYanes/WiCC2.svg)
+![](https://img.shields.io/github/contributors/MiguelYanes/WiCC2.svg)
+![](https://img.shields.io/github/repo-size/MiguelYanes/WiCC2.svg)
 
-<a href="url"><img src="https://github.com/pabloibiza/WiCC/blob/master/resources/logo_circle_code.png" align="left" height="210" width="210" >
+<a href="url"><img src="https://github.com/MiguelYanes/WiCC2/blob/master/resources/logo_circle_code.png" align="left" height="210" width="210" >
 </a>
 <br/>
 *WiFi Cracking Camp*
 
 GUI tool for wireless WEP and WPA/WPA2 pentesting.
 <br/><br/>
-Developed by Pablo Sanz Alguacil, Miguel Yanes Fernández and Adam Chalkley, as the Group Project for 3rd year of the 
+Developed by Pablo Sanz Alguacil and Miguel Yanes Fernández, as the Group Project for 3rd year of the 
 Bachelor of Science in Computing in Digital Forensics and Cyber Security at the **Technological University Dublin**.
 
 <br/><br/><br/>
 Wireless pentesting tool with functionalities such as password cracking (in WEP and WPA/WPA2 networks), DoS attacks, 
 client de-authentication,and data decryption.
 <br/><br/>
+
+WiCC 2 is the current version under development, updated from the original ![WiCC](https://github.com/pabloibiza/WiCC) project.
 
 # Project insight
 
@@ -83,7 +84,7 @@ If you want to get in contact to notify us about some bugs you encountered, or a
 * **Miguel Yanes Fernández** - *Project Manager, back-end developer* - Github: [MiguelYanes](https://github.com/MiguelYanes)
 * **Pablo Sanz Alguacil** - *UX designer, front-end developer, and back-end collaborator* - Github: [pabloibiza](https://github.com/pabloibiza)
 
-See also the list of [contributors](https://github.com/pabloibiza/WiCC/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/MiguelYanes/WiCC2/contributors) who participated in this project.
 <br/><br/>
 
 # Source License
