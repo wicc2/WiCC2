@@ -37,7 +37,7 @@ The utilised tools are the following:
 
 # Requirements
 
-You will need to run the application with root privileges, and using some version of Python 3+. Also, you need to have installed *aircrack-ng suite* and *ifconfig*, the rest of the tools mentioned in the section *Project insight* are optional. If any of the mentioned tools is not installed, the application will ask you to automatically install it. Of course, as this is a wireless pentesting tool, you will need some wireless card to perform the scans/attacks. In case you miss some of these requirements, you won't be able to initiate the tool. 
+You will need to run the application with root privileges, and using some version of Python 3+. Also, you need to have installed *aircrack-ng suite*, *ifconfig* and *cowpatty*, the rest of the tools mentioned in the section *Project insight* are optional. If any of the mentioned tools is not installed, the application will ask you to automatically install it. Of course, as this is a wireless pentesting tool, you will need some wireless card to perform the scans/attacks. In case you miss some of these requirements, you won't be able to initiate the tool. 
 
 Is recommendable to run it on **Kali Linux** or **Parrot OS** since both have the required tools preinstalled. Also it is highly recommended to use a wireless card that supports both monitor mode and packet injection. In case your wireless card doesn't support monitor mode, you won't be able to execute the attacks and scans.
 <br/><br/>
@@ -80,9 +80,8 @@ If you want to get in contact to notify us about some bugs you encountered, or a
 
 # Authors
 
-* **Miguel Yanes Fernández** - *Project Manager, back-end developer, and documentation* - Github: [MiguelYanes](https://github.com/MiguelYanes)
-* **Pablo Sanz Alguacil** - *UX designer, front-end developer, and documentation* - Github: [pabloibiza](https://github.com/pabloibiza)
-* **Adam Chalkley** - *Documentation and research* - [adamchalkley2019](https://github.com/adamchalkley2019)
+* **Miguel Yanes Fernández** - *Project Manager, back-end developer* - Github: [MiguelYanes](https://github.com/MiguelYanes)
+* **Pablo Sanz Alguacil** - *UX designer, front-end developer, and back-end collaborator* - Github: [pabloibiza](https://github.com/pabloibiza)
 
 See also the list of [contributors](https://github.com/pabloibiza/WiCC/contributors) who participated in this project.
 <br/><br/>
