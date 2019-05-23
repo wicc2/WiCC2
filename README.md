@@ -1,8 +1,8 @@
 WiCC 2
 ====
 ![](https://img.shields.io/github/license/MiguelYanes/WiCC2.svg)
-![](https://img.shields.io/github/release/MiguelYanes/WiCC2.svg)
-![](https://img.shields.io/github/release-date/MiguelYanes/WiCC2.svg)
+![](https://img.shields.io/github/release-pre/MiguelYanes/WiCC2.svg)
+![](https://img.shields.io/github/release-date-pre/MiguelYanes/WiCC2.svg)
 ![](https://img.shields.io/github/contributors/MiguelYanes/WiCC2.svg)
 ![](https://img.shields.io/github/repo-size/MiguelYanes/WiCC2.svg)
 
