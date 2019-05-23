@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 """
     WiCC (Wifi Cracking Camp)
+    Second version of the original WiCC tool at https://github.com/pabloibiza/WiCC
     GUI tool for wireless pentesting on WEP and WPA/WPA2 networks.
-    Project developed by Pablo Sanz Alguacil, Miguel Yanes Fernández and Adan Chalkley,
-    as the Group Project for the 3rd year of the Bachelor of Sicence in Computing in Digital Forensics and CyberSecurity
-    at TU Dublin - Blanchardstown Campus
+    Project developed by Pablo Sanz Alguacil, Miguel Yanes Fernández.
 """
 
 from wicc_control import Control
@@ -71,9 +70,8 @@ if __name__ == '__main__':
     print("Developed by:")
     print("  - Pablo Sanz Alguacil")
     print("  - Miguel Yanes Fernández")
-    print("  - Adam Chankley")
     print("")
-    print("Project page: https://github.com/pabloibiza/WiCC")
+    print("Project page: https://github.com/MiguelYanes/WiCC2")
     print("License: GPLv3")
 
     auto_select = False  # auto-select the network interface
@@ -166,7 +164,6 @@ if __name__ == '__main__':
         show_message("All required software is installed")
 
     time.sleep(1)
-
 
     control.show_info_notification("       Welcome to WiCC\n\nSelect an interface and press \"Scan networks\""
                                    "to begin the process. \n\nIf you need help to use the application go the \"Help\" "
