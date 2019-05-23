@@ -13,9 +13,10 @@ from tkinter import Frame, Button, Label, RIGHT
 
 
 class About:
-    logo = "resources/icon_medium.png"
+    logo = "/resources/icon_medium.png"
 
-    def __init__(self):
+    def __init__(self, main_directory):
+        self.logo = main_directory + self.logo
         self.build_window()
         self.root.mainloop()
 

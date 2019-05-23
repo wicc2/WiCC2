@@ -14,11 +14,12 @@ from wicc_view_popup import PopUpWindow
 
 
 class DoS:
-    logo = "resources/icon_medium.png"
+    logo = "/resources/icon_medium.png"
     main_view = ""
 
-    def __init__(self, main_view):
+    def __init__(self, main_view, main_directory):
         self.main_view = main_view
+        self.logo = main_directory + self.logo
         self.build_window()
         self.root.mainloop()
 

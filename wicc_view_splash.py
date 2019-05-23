@@ -11,11 +11,12 @@ import tkinter as tk
 
 
 class Splash:
-    image_file = "resources/splash.png"
+    image_file = "/resources/splash.png"
     width = 600
     height = 400
 
-    def __init__(self):
+    def __init__(self, directory):
+        self.image_file = directory + self.image_file
         root = tk.Tk()
         # show no frame
         root.overrideredirect(True)

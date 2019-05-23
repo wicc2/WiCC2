@@ -80,12 +80,11 @@ class Control:
         The selected interface semaphore is initialized as released, the others as acquired
         """
         if not Control.__instance:
+            self.main_directory = os.path.realpath(__file__)[:-((len("wicc_control.py"))+1)]
             self.model = ""
             self.model = Model()
-            self.view = View(self)
+            self.view = View(self, self.main_directory)
             self.popup = PopUpWindow()
-            directory, err = self.execute_command(['pwd'])
-            self.main_directory = directory.decode('utf-8')[:-1]
             self.local_folder = self.main_directory + self.local_folder
             self.selected_wordlist = self.main_directory + self.selected_wordlist
             self.__instance = self
