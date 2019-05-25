@@ -6,7 +6,7 @@ WiCC 2
 ![](https://img.shields.io/github/contributors/MiguelYanes/WiCC2.svg)
 ![](https://img.shields.io/github/repo-size/MiguelYanes/WiCC2.svg)
 
-<a href="url"><img src="https://github.com/MiguelYanes/WiCC2/blob/master/resources/logo_circle_code.png" align="left" height="210" width="210" >
+<a href="url"><img src="https://github.com/pabloibiza/WiCC/blob/master/resources/logo_circle_code.png" align="left" height="210" width="210" >
 </a>
 <br/>
 *WiFi Cracking Camp*
