@@ -1,10 +1,10 @@
 WiCC 2
 ====
-![](https://img.shields.io/github/license/MiguelYanes/WiCC2.svg)
-![](https://img.shields.io/github/release-pre/MiguelYanes/WiCC2.svg)
-![](https://img.shields.io/github/release-date-pre/MiguelYanes/WiCC2.svg)
-![](https://img.shields.io/github/contributors/MiguelYanes/WiCC2.svg)
-![](https://img.shields.io/github/repo-size/MiguelYanes/WiCC2.svg)
+![](https://img.shields.io/github/license/wicc2/WiCC2.svg)
+![](https://img.shields.io/github/release-pre/wicc2/WiCC2.svg)
+![](https://img.shields.io/github/release-date-pre/wicc2/WiCC2.svg)
+![](https://img.shields.io/github/contributors/wicc2/WiCC2.svg)
+![](https://img.shields.io/github/repo-size/wicc2/WiCC2.svg)
 
 <a href="url"><img src="https://github.com/pabloibiza/WiCC/blob/master/resources/logo_circle_code.png" align="left" height="210" width="210" >
 </a>
