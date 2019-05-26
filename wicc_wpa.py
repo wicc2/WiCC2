@@ -30,6 +30,7 @@ class WPA(EncryptionType):
         self.wordlist = wordlist
         self.pmk = ""
         self.is_pyrit_installed = is_pyrit_installed
+        self.status = "initial"
 
     def scan_network(self):
         """
@@ -76,6 +77,8 @@ class WPA(EncryptionType):
             if self.is_pyrit_installed:
                 valid_handshake = valid_handshake or self.filter_pyrit_out(pyrit_out)
 
+        self.status = "scanned"
+
     def kill_genpmk(self):
         """
         Method to kill the genpmk process. This method is meant to be runned once the handshake has been captured.
@@ -94,6 +97,9 @@ class WPA(EncryptionType):
                 if pid != "":
                     self.execute_command(['kill', '-9', pid])  # kills all processes related with the process
                     self.show_message("killed pid " + pid)
+
+    def get_status(self):
+        return self.status
 
     def add_wordlist(self, wordlist):
         """
@@ -132,6 +138,7 @@ class WPA(EncryptionType):
         aircrack_out, aircrack_err = self.execute_command(aircrack_cmd)
         aircrack_out = aircrack_out.decode('utf-8')
         self.password = self.filter_aircrack(aircrack_out)
+        self.status = "cracked"
         return self.password
 
     def calculate_pmk(self):

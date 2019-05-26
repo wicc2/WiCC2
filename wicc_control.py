@@ -610,8 +610,15 @@ class Control:
                 self.show_message("No network selected, please, select one")
                 return
             self.selected_network = value
-            self.set_buttons_wpa_initial()
-            self.set_buttons_wep_initial()
+            network = self.model.search_network(value)
+            if "WPA" in network.get_encryption():
+                status = self.get_wpa_status()
+                if status == "scanned":
+                    self.set_buttons_wpa_scanned()
+                else:
+                    self.set_buttons_wpa_initial()
+            else:
+                self.set_buttons_wep_initial()
             self.set_semaphores_state("Stop scan")
         elif operation == Operation.ATTACK_NETWORK:
             self.stop_scan()
@@ -801,6 +808,12 @@ class Control:
     def set_buttons_wep_initial(self):
         self.view.get_notify_buttons(["attack_wep"], True)
 
+    def get_wpa_status(self):
+        network = self.model.search_network(self.selected_network)
+        net_attack = self.get_net_attack(network.get_bssid())
+        if net_attack:
+            return net_attack.get_status()
+
     def scan_wpa(self):
         """
         Scan a wpa network, waiting until a handshake is captured
@@ -834,7 +847,6 @@ class Control:
                                   self.verbose_level, self.silent_attack, self.write_directory, is_pyrit)
 
         self.add_net_attack(network.get_bssid(), self.net_attack)
-
 
         self.show_message("start scanning")
         self.net_attack.scan_network()
