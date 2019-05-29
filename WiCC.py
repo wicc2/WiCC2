@@ -43,16 +43,6 @@ if __name__ == '__main__':
     :Author: Miguel Yanes Fernández
     """
 
-    # check root privilege
-    if os.getuid() != 0:
-        print("\n\tError: program must be executed as root\n")
-        sys.exit(1)
-
-    # checks python version
-    if sys.version_info[0] < 3:
-        print("\n\tError: Must be executed with Python 3\n")
-        sys.exit(1)
-
     exit = False
     print(cyan)
     print("=============================================" + light_blue)
@@ -117,14 +107,24 @@ if __name__ == '__main__':
             print("   -v \t\tselect the verbose level for the program (default: 0, no output)")
             print("\t-v  \tlevel 1 (basic output)")
             print("\t-vv \tlevel 2 (advanced output)")
-            print("\t-vvv\tlevel 3 (advanced output and executed commands)\n")
+            print("\t-vvv\tlevel 3 (advanced output and executed commands)\n\033[0m")
             sys.exit(0)
         else:
             print("*** Unrecognized option " + arg)
-            print("*** Use option --help to view the help and finish execution. Only for debugging purposes\n")
+            print("*** Use option --help to view the help and finish execution. Only for debugging purposes\n\033[0m")
             sys.exit(0)
     print(options_message)
     print(white)
+
+    # check root privilege
+    if os.getuid() != 0:
+        print("Error: program must be executed as root\n")
+        sys.exit(1)
+
+    # checks python version
+    if sys.version_info[0] < 3:
+        print("Error: Must be executed with Python 3\n")
+        sys.exit(1)
 
     control = Control()
 
