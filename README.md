@@ -49,13 +49,13 @@ Is recommendable to run it on **Kali Linux** or **Parrot OS** since both have th
 Monitor mode, or RFMON (Radio Frequency MONitor) mode, allows a computer with a wireless network interface controller (WNIC) to monitor all traffic received on a wireless channel. Unlike promiscuous mode, which is also used for packet sniffing, monitor mode allows packets to be captured without having to associate with an access point or ad hoc network first. Monitor mode only applies to wireless networks, while promiscuous mode can be used on both wired and wireless networks. Monitor mode is one of the eight modes that 802.11 wireless cards can operate in: Master (acting as an access point), Managed (client, also known as station), Ad hoc, Repeater, Mesh, Wi-Fi Direct, TDLS and Monitor mode.
 
 Usually the wireless adapter is unable to transmit in monitor mode and is restricted to a single wireless channel, though this is dependent on the wireless adapter's driver, its firmware, and features of its chipset. Also, in monitor mode the adapter does not check to see if the cyclic redundancy check (CRC) values are correct for packets captured, so some captured packets may be corrupted.
-
 <br/><br/>
+
 # Installation
 
 To install the tool and all its required software, you need to use the script `install.sh`. You only need root privileges to execute this script, and it will install all required software, and create all the necessary symbolic links. Once the installation is completed, you can run the program with the command `wicc` under root privileges.
-
 <br/><br/>
+
 # Usage
 
 The tool is a framework utility, but you need to run it from the command line. To do so, you need to run under root privileges and Python 3+:
