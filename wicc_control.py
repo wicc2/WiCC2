@@ -23,6 +23,19 @@ import os
 import csv
 import threading
 import datetime
+import multiprocessing
+
+
+class StoppableThread(threading.Thread):
+    def __init__(self):
+        super(StoppableThread, self).__init__()
+        self._stop_event = threading.Event()
+
+    def stop(self):
+        self._stop_event.set()
+
+    def stopped(self):
+        return self._stop_event.is_set()
 
 
 class Control:
@@ -64,6 +77,8 @@ class Control:
     timestamp = 0  # timestamp added to the created dump files (just for the initial scan)
     passwords_file_name = "cracked_networks"  # file to store cracked networks information
 
+    process_pool = []
+
     # Semaphores
 
     semSelectInterface = threading.Semaphore()  # semahpore for the initial state, select an interface
@@ -71,6 +86,7 @@ class Control:
     semRunningScan = threading.Semaphore()  # semaphore for the running scan state
     semStoppedScan = threading.Semaphore()  # semaphore for when the scan has stopped
     semGeneral = threading.Semaphore()  # general semaphore
+    semStopRunning = threading.Semaphore()  # semaphore for the execution stopping
 
     def __init__(self):
         """
@@ -91,6 +107,7 @@ class Control:
             self.semStartScan.acquire(False)
             self.semRunningScan.acquire(False)
             self.semStoppedScan.acquire(False)
+            self.semStopRunning.acquire(False)
         else:
             raise Exception("Singleton Class")
 
@@ -203,6 +220,14 @@ class Control:
             self.semStartScan.acquire(False)
             self.semRunningScan.acquire(False)
             self.semStoppedScan.release()
+        elif state == "Stop running":
+            self.semSelectInterface.acquire(False)
+            self.semStartScan.acquire(False)
+            self.semRunningScan.acquire(False)
+            self.semStoppedScan.acquire(False)
+            self.semStopRunning.release()
+            self.semGeneral.release()
+
 
     def check_software(self):
         """
@@ -395,9 +420,10 @@ class Control:
             self.model.clear_interfaces()
             return False
 
-        scan_info_thread = threading.Thread(target=self.show_info_notification,
+        scan_info_thread = multiprocessing.Process(target=self.show_info_notification,
                                             args=(" - Scanning networks -\nStop the scan to select a network",))
         scan_info_thread.start()
+        self.process_pool.append(scan_info_thread)
 
         self.check_monitor_mode()
 
@@ -428,8 +454,9 @@ class Control:
             command.append('--channel')
             command.append(self.scan_filter_parameters[1])
 
-        thread = threading.Thread(target=self.execute_command, args=(command,))
-        thread.start()
+        filter_thread = multiprocessing.Process(target=self.execute_command, args=(command,))
+        filter_thread.start()
+        self.process_pool.append(filter_thread)
 
         return True
 
@@ -628,7 +655,10 @@ class Control:
             self.semRunningScan.acquire(False)
             self.semStoppedScan.release()
         elif operation == Operation.STOP_RUNNING:
+            self.set_semaphores_state("Stop running")
             self.stop_running()
+            for process in self.process_pool:
+                process.terminate()
         elif operation == Operation.SCAN_OPTIONS:
             self.apply_filters(value)
         elif operation == Operation.CUSTOMIZE_MAC:
@@ -676,7 +706,6 @@ class Control:
             os.close(2)  # block writing to stderr
             del self.view
             self.running_stopped = True
-            exit(0)
         except:
             raise SystemExit
 
@@ -1215,8 +1244,9 @@ class Control:
             passwords = self.local_folder + "/" + self.passwords_file_name
             open(passwords, 'r').close()  # just to raise an exception if the file doesn't exists
             command = ['xdg-open', passwords]
-            thread = threading.Thread(target=self.execute_command, args=(command,))
-            thread.start()
+            cracked_pass_thread = multiprocessing.Process(target=self.execute_command, args=(command,))
+            cracked_pass_thread.start()
+            self.process_pool.append(cracked_pass_thread)
         except FileNotFoundError:
             self.show_warning_notification("No stored cracked networks. You need to do and finish an attack")
 

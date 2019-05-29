@@ -192,4 +192,7 @@ if __name__ == '__main__':
         elif control.semStoppedScan.acquire(False):
             control.semGeneral.release()
             show_message("Scan stopped\nSelect a network or start a new scan")
-    sys.exit(0)
+        elif control.semStopRunning.acquire(False):
+            sys.exit(0)
+
+    sys.exit(1)
