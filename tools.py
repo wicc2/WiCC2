@@ -29,7 +29,8 @@ print("\n----------------------------------")
 print("Installing all necesary software:\n")
 
 os.system("dpkg --configure -a")
-out = os.system("apt-get install --yes python3 python3-tk iw net-tools aircrack-ng gcc make libpcap-dev libssl-dev")
+out = os.system("apt-get install --yes python3 python3-tk iw net-tools aircrack-ng "
+                "gcc make libpcap-dev libssl-dev pyrit crunch")
 print("\ninstalling cowpatty")
 urllib.request.urlretrieve("http://pkgs.fedoraproject.org/repo/pkgs/cowpatty/cowpatty-4.6.tgz/"
                                    "b90fd36ad987c99e7cc1d2a05a565cbd/cowpatty-4.6.tgz", "cowpatty-4.6.tgz")
