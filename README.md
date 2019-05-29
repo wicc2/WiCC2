@@ -6,7 +6,7 @@ WiCC 2
 ![](https://img.shields.io/github/contributors/wicc2/WiCC2.svg)
 ![](https://img.shields.io/github/repo-size/wicc2/WiCC2.svg)
 
-<a href="url"><img src="https://github.com/pabloibiza/WiCC/blob/master/resources/logo_circle_code.png" align="left" height="210" width="210" >
+<a href="url"><img src="https://github.com/wicc2/WiCC/blob/master/resources/logo_circle_code.png" align="left" height="210" width="210" >
 </a>
 <br/>
 *WiFi Cracking Camp*
@@ -23,6 +23,7 @@ client de-authentication,and data decryption.
 
 WiCC 2 is the current version under development, updated from the original ![WiCC](https://github.com/pabloibiza/WiCC) project.
 
+<br/><br/>
 # Project insight
 
 Tool developed in Python 3.7, developed and tested under [**Kali Linux**](https://www.kali.org/) and [**Parrot OS**](https://www.parrotsec.org/) distributions.
@@ -49,11 +50,17 @@ Monitor mode, or RFMON (Radio Frequency MONitor) mode, allows a computer with a 
 
 Usually the wireless adapter is unable to transmit in monitor mode and is restricted to a single wireless channel, though this is dependent on the wireless adapter's driver, its firmware, and features of its chipset. Also, in monitor mode the adapter does not check to see if the cyclic redundancy check (CRC) values are correct for packets captured, so some captured packets may be corrupted.
 
+<br/><br/>
+# Installation
+
+To install the tool and all its required software, you need to use the script `install.sh`. You only need root privileges to execute this script, and it will install all required software, and create all the necessary symbolic links. Once the installation is completed, you can run the program with the command `wicc` under root privileges.
+
+<br/><br/>
 # Usage
 
 The tool is a framework utility, but you need to run it from the command line. To do so, you need to run under root privileges and Python 3+:
 
-> `$ sudo python3 WiCC.py [options]`
+> `$ sudo wicc [options]`
 
 <br/><br/>
 There are also some advanced options that you can choose from the command line. These options are originaly meant for debugging purposes, but you may find some of them useful:
