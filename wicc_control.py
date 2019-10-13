@@ -1118,18 +1118,24 @@ class Control:
 
         :author: Pablo Sanz Alguacil
         """
-        try:
-            command1 = ['ifconfig', values[0], 'down']
-            command2 = ['ifconfig', values[0], 'hw', 'ether', values[1]]
-            command3 = ['ifconfig', values[0], 'up']
-            self.execute_command(command1)
-            self.execute_command(command2)
-            self.execute_command(command3)
-        except:
-            self.show_warning_notification("Unable to set new MAC address")
+        if values[1][1] in self.hex_values_even:
+            try:
+                command1 = ['ifconfig', values[0], 'down']
+                command2 = ['ifconfig', values[0], 'hw', 'ether', values[1]]
+                command3 = ['ifconfig', values[0], 'up']
+                self.execute_command(command1)
+                self.execute_command(command2)
+                self.execute_command(command3)
+            except:
+                self.show_warning_notification("Unable to set new MAC address")
 
-        if self.mac_checker(values[0]) != values[1]:
-            self.customize_mac(values)
+            if self.mac_checker(values[0]) != values[1]:
+                self.customize_mac(values)
+        else:
+            self.show_warning_notification("Not acceptable MAC")
+
+
+
 
     def restore_mac(self, interface):
         """
