@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 """
     WiCC (Wifi Cracking Camp)
+    Second version of the original WiCC tool at https://github.com/pabloibiza/WiCC
     GUI tool for wireless pentesting on WEP and WPA/WPA2 networks.
-    Project developed by Pablo Sanz Alguacil, Miguel Yanes Fernández and Adan Chalkley,
-    as the Group Project for the 3rd year of the Bachelor of Sicence in Computing in Digital Forensics and CyberSecurity
-    at TU Dublin - Blanchardstown Campus
+    Project developed by Pablo Sanz Alguacil, Miguel Yanes Fernández.
 """
 
 from wicc_enc_type import EncryptionType
@@ -31,6 +30,7 @@ class WPA(EncryptionType):
         self.wordlist = wordlist
         self.pmk = ""
         self.is_pyrit_installed = is_pyrit_installed
+        self.status = "initial"
 
     def scan_network(self):
         """
@@ -73,9 +73,11 @@ class WPA(EncryptionType):
                 pyrit_out, err = self.execute_command(pyrit_cmd)
                 time.sleep(0.5)
             cowpatty_out, err = self.execute_command(cowpatty_cmd)
-            valid_handshake = self.filter_cowpatty_out()
+            valid_handshake = self.filter_cowpatty_out(cowpatty_out)
             if self.is_pyrit_installed:
                 valid_handshake = valid_handshake or self.filter_pyrit_out(pyrit_out)
+
+        self.status = "scanned"
 
     def kill_genpmk(self):
         """
@@ -95,6 +97,9 @@ class WPA(EncryptionType):
                 if pid != "":
                     self.execute_command(['kill', '-9', pid])  # kills all processes related with the process
                     self.show_message("killed pid " + pid)
+
+    def get_status(self):
+        return self.status
 
     def add_wordlist(self, wordlist):
         """
@@ -133,6 +138,7 @@ class WPA(EncryptionType):
         aircrack_out, aircrack_err = self.execute_command(aircrack_cmd)
         aircrack_out = aircrack_out.decode('utf-8')
         self.password = self.filter_aircrack(aircrack_out)
+        self.status = "cracked"
         return self.password
 
     def calculate_pmk(self):

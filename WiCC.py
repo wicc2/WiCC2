@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 """
     WiCC (Wifi Cracking Camp)
+    Second version of the original WiCC tool at https://github.com/pabloibiza/WiCC
     GUI tool for wireless pentesting on WEP and WPA/WPA2 networks.
-    Project developed by Pablo Sanz Alguacil, Miguel Yanes Fernández and Adan Chalkley,
-    as the Group Project for the 3rd year of the Bachelor of Sicence in Computing in Digital Forensics and CyberSecurity
-    at TU Dublin - Blanchardstown Campus
+    Project developed by Pablo Sanz Alguacil, Miguel Yanes Fernández.
 """
 
 from wicc_control import Control
@@ -44,16 +43,6 @@ if __name__ == '__main__':
     :Author: Miguel Yanes Fernández
     """
 
-    # check root privilege
-    if os.getuid() != 0:
-        print("\n\tError: script must be executed as root\n")
-        sys.exit(1)
-
-    # checks python version
-    if sys.version_info[0] < 3:
-        print("\n\tError: Must be executed with Python 3\n")
-        sys.exit(1)
-
     exit = False
     print(cyan)
     print("=============================================" + light_blue)
@@ -71,9 +60,8 @@ if __name__ == '__main__':
     print("Developed by:")
     print("  - Pablo Sanz Alguacil")
     print("  - Miguel Yanes Fernández")
-    print("  - Adam Chankley")
     print("")
-    print("Project page: https://github.com/pabloibiza/WiCC")
+    print("Project page: https://github.com/MiguelYanes/WiCC2")
     print("License: GPLv3")
 
     auto_select = False  # auto-select the network interface
@@ -119,14 +107,24 @@ if __name__ == '__main__':
             print("   -v \t\tselect the verbose level for the program (default: 0, no output)")
             print("\t-v  \tlevel 1 (basic output)")
             print("\t-vv \tlevel 2 (advanced output)")
-            print("\t-vvv\tlevel 3 (advanced output and executed commands)\n")
+            print("\t-vvv\tlevel 3 (advanced output and executed commands)\n\033[0m")
             sys.exit(0)
         else:
             print("*** Unrecognized option " + arg)
-            print("*** Use option --help to view the help and finish execution. Only for debugging purposes\n")
+            print("*** Use option --help to view the help and finish execution. Only for debugging purposes\n\033[0m")
             sys.exit(0)
     print(options_message)
     print(white)
+
+    # check root privilege
+    if os.getuid() != 0:
+        print("Error: program must be executed as root\n")
+        sys.exit(1)
+
+    # checks python version
+    if sys.version_info[0] < 3:
+        print("Error: Must be executed with Python 3\n")
+        sys.exit(1)
 
     control = Control()
 
@@ -167,7 +165,6 @@ if __name__ == '__main__':
 
     time.sleep(1)
 
-
     control.show_info_notification("       Welcome to WiCC\n\nSelect an interface and press \"Scan networks\""
                                    "to begin the process. \n\nIf you need help to use the application go the \"Help\" "
                                    "section.")
@@ -195,4 +192,7 @@ if __name__ == '__main__':
         elif control.semStoppedScan.acquire(False):
             control.semGeneral.release()
             show_message("Scan stopped\nSelect a network or start a new scan")
-    sys.exit(0)
+        elif control.semStopRunning.acquire(False):
+            sys.exit(0)
+
+    sys.exit(1)

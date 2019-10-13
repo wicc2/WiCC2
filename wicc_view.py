@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 """
     WiCC (Wifi Cracking Camp)
+    Second version of the original WiCC tool at https://github.com/pabloibiza/WiCC
     GUI tool for wireless pentesting on WEP and WPA/WPA2 networks.
-    Project developed by Pablo Sanz Alguacil, Miguel Yanes Fernández and Adan Chalkley,
-    as the Group Project for the 3rd year of the Bachelor of Sicence in Computing in Digital Forensics and CyberSecurity
-    at TU Dublin - Blanchardstown Campus
+    Project developed by Pablo Sanz Alguacil, Miguel Yanes Fernández.
 """
 
 import webbrowser
@@ -33,13 +32,18 @@ class View:
     channels = ('ALL', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14')
     mac_spoofing_status = False
     silent_mode_status = False
-    icon_path = "resources/icon.png"
-    icon_path_small = "resources/icon_small.png"
+    icon_path = "/resources/icon.png"
+    icon_path_small = "/resources/icon_small.png"
+    main_directory = ""
 
-    def __init__(self, control):
+    def __init__(self, control, main_directory):
         self.control = control
-        self.splash = Splash()
+        self.main_directory = main_directory
+        self.splash = Splash(main_directory)
+        self.icon_path = self.main_directory + self.icon_path
+        self.icon_path_small = self.main_directory + self.icon_path_small
         self.popup_gen = PopUpWindow()
+
 
     def build_window(self):
         """
@@ -690,7 +694,7 @@ class View:
 
         :author: Pablo Sanz Alguacil
         """
-        About()
+        About(self.main_directory)
 
     def open_link(self):
         """
@@ -717,7 +721,7 @@ class View:
         :author: Pablo Sanz Alguacil
         """
         self.disable_window(True)
-        DoS(self)
+        DoS(self, self.main_directory)
 
     def decrypt_cap_file(self):
         """
